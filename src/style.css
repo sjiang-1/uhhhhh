@@ -1,0 +1,171 @@
+:root {
+  /* Stage matches Figma artboard: https://www.figma.com/design/VewlWUCc01jzhIYzZvrWSt/Untitled?node-id=0-1 */
+  --stage-w: 450px;
+  --stage-h: 801px;
+  --bg-canvas: #ffffff;
+  --text: #14141a;
+  --btn-bg: #1a1a22;
+  --btn-bg-hover: #2a2a34;
+  --radius: 10px;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ffffff;
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.canvas-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+}
+
+.canvas-host {
+  position: relative;
+  width: min(
+    var(--stage-w),
+    calc(100vw - 2rem),
+    calc((100vh - 5rem) * 450 / 801)
+  );
+  aspect-ratio: 450 / 801;
+  height: auto;
+  max-height: min(var(--stage-h), calc(100vh - 5rem));
+  overflow: hidden;
+  background: var(--bg-canvas);
+}
+
+#particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.eye-launch {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+}
+
+.btn-eye {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--btn-bg);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-eye:hover:not(:disabled) {
+  background: var(--btn-bg-hover);
+}
+
+.btn-eye:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+#gaze-dot {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-radius: 50%;
+  background: rgba(234, 108, 86, 0.4);
+  border: 2px solid rgba(188, 28, 108, 0.85);
+  pointer-events: none;
+  z-index: 50;
+  transition: left 0.1s ease-out, top 0.1s ease-out;
+  display: none;
+}
+
+.calibration-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(244, 239, 230, 0.96);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.calibration-overlay[hidden] {
+  display: none;
+}
+
+.calibration-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.calibration-hint {
+  color: #5e5e6b;
+  font-size: 0.875rem;
+  max-width: 22rem;
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.calibration-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #bc1c6c;
+  box-shadow: 0 0 0 4px rgba(188, 28, 108, 0.2);
+  position: fixed;
+  margin: -14px 0 0 -14px;
+  pointer-events: none;
+}
+
+.calibration-dot[hidden] {
+  display: none;
+}
+
+.calibration-progress {
+  font-size: 0.8125rem;
+  color: #5e5e6b;
+  margin: 0;
+}
+
+body.gaze-only {
+  cursor: none;
+}
+
+body.gaze-only * {
+  cursor: none;
+}
