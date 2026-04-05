@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --text: #e5e5e5;
+  --accent: #3b82f6;
+  --muted: #737373;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.app-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-host {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#particles {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.eye-launch {
+  position: relative;
+  z-index: 10;
+}
+
+.btn-eye {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-eye:hover {
+  opacity: 0.9;
+}
+
+.btn-eye:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Calibration Overlay */
+.calibration-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  gap: 1rem;
+}
+
+.calibration-overlay[hidden] {
+  display: none;
+}
+
+.calibration-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.calibration-hint {
+  font-size: 0.875rem;
+  color: var(--muted);
+  max-width: 400px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.calibration-dot {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 0 20px var(--accent);
+}
+
+.calibration-dot[hidden] {
+  display: none;
+}
+
+.calibration-progress {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Gaze Dot */
+#gaze-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: rgba(59, 130, 246, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+#gaze-dot.visible {
+  opacity: 1;
+}
