@@ -1,5 +1,9 @@
 import './style.css';
 
+console.log('[v0] main.js loaded');
+console.log('[v0] particles canvas:', document.getElementById('particles'));
+console.log('[v0] canvas-host:', document.getElementById('canvas-host'));
+
 function lerp(a, b, t) {
   return a + (b - a) * t;
 }
@@ -351,9 +355,11 @@ function tickParticles() {
 
 function resizeParticleCanvas() {
   const host = document.getElementById('canvas-host');
+  console.log('[v0] resizeParticleCanvas called, host:', host, 'particleCanvas:', particleCanvas);
   if (!host || !particleCanvas) return;
   const nw = Math.max(1, Math.floor(host.clientWidth));
   const nh = Math.max(1, Math.floor(host.clientHeight));
+  console.log('[v0] canvas dimensions:', nw, 'x', nh);
   particleCanvas.width = nw;
   particleCanvas.height = nh;
   prevLuma = null;

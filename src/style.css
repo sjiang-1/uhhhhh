@@ -51,9 +51,11 @@ body {
   );
   aspect-ratio: 450 / 801;
   height: auto;
+  min-height: 400px;
   max-height: min(var(--stage-h), calc(100vh - 5rem));
   overflow: hidden;
   background: var(--bg-canvas);
+  border: 1px solid #eee;
 }
 
 #particles {
