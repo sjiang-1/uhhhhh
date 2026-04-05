@@ -1,6 +1,12 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 export default defineConfig({
+  // Pin project root (fixes /src/... resolution on Linux CI e.g. Vercel)
+  root: __dirname,
   server: {
     proxy: {
       '/api/claude': {
